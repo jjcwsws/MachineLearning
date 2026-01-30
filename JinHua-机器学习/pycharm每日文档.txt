@@ -1,0 +1,67 @@
+conda activate medical-rag（终端进入，激活你的环境）
+
+
+
+
+
+
+
+1.装依赖：
+pip install langchain langchain-community langchain-huggingface faiss-gpu transformers torch sentence-transformers
+pip install gradio  # 快速出界面
+
+
+2.conda install -c pytorch faiss-cpu
+（
+终端输入python进入交互式解释器（也叫 REPL），然后在终端输入以下指令能看到：
+import faiss
+print(faiss.__version__)
+print(faiss.get_num_gpus())
+）
+
+
+3.textpython -m pip install langchain-huggingface  （conda 环境推荐）
+
+
+
+4.接下来把 demo 需要的都装上：
+
+python -m pip install langchain langchain-community sentence-transformers transformers torch
+或者
+python -m pip install --upgrade langchain langchain-community langchain-huggingface（之前装过 langchain 但还是报错，可能是版本不匹配，再加 --upgrade）
+
+（
+终端输入python进入交互式解释器（也叫 REPL），然后在终端输入以下指令能看到：
+from importlib.metadata import version
+print(version('langchain-huggingface'))   # 输出 1.2.0__
+)
+
+
+
+
+5.pip install transformers accelerate sentence-transformers huggingface-hub    (最全一键安装（包含常见依赖）)
+
+
+
+6.     pip install transformers==4.57.6 --force-reinstall
+	pip install packaging==25.0 --force-reinstall
+	pip install huggingface-hub==0.36.0 --force-reinstall        # 保持或升级到更高 0.x 如 0.99.x 如果可用
+	pip install packaging==25.0 --force-reinstall
+
+
+7.  在终端medical-rag环境下先确认自己的 CUDA 版本
+		
+	nvidia-smi
+
+    根据版本情况对应下载：
+
+如果你的 nvidia-smi 显示 CUDA 12.6 或更高（最常见）：
+textpip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+如果 CUDA 12.8：
+textpip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+
+
+8.  pip install numpy==1.26.4 --force-reinstall（安装完验证：python -c "import numpy; print(numpy.__version__)"）
+
+
+
