@@ -65,3 +65,36 @@ textpip install torch torchvision torchaudio --index-url https://download.pytorc
 
 
 
+
+9.提醒一下：关于
+https://hf-mirror.com/Qwen/Qwen2-1.5B-Instruct/tree/main（LLM语言模型）
+和
+huggingface.co/BAAI/bge-large-zh-v1.5/tree/main（embedding 模型）
+都是离线下载的，因为网络环境不稳定。
+
+
+
+10.关于常见两个报错的内容与解决方法：
+
+     10.1。报错：torch_dtype is deprecated! Use dtype instead!
+
+	   原本是:  tourch_dtypt=torch.float16
+           改成：   dtype=torch.float16          # 如果报错，改成 torch.bfloat16 或 torch.float32
+
+
+     10.2。报错：embedding_function is expected to be an Embeddings object, support for passing in a function will soon be removed.
+
+
+          原本是：
+class LocalBGEEmbeddings:
+    def __init__(self, model):
+        self.model = model
+
+
+	  改成：（原本引用的自定义类 LocalBGEEmbeddings未被继承，现在把类改成继承 Embeddings）
+from langchain_core.embeddings import Embeddings
+class LocalBGEEmbeddings(Embeddings):
+    def __init__(self, model):
+        self.model = model
+
+
